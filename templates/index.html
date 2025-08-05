@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🌾 Crop Disease Classifier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
 
+        body {
+            height: 100vh;
+            background: linear-gradient(-45deg, #2c3e50, #3498db, #2ecc71, #9b59b6);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px #000;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        select, button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        .result {
+            margin-top: 20px;
+            color: #fff;
+            font-size: 1.3em;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌿 Crop Disease Classifier</h1>
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <select name="crop" required>
+            <option disabled selected>Select a Crop</option>
+            <option>GUAVA</option>
+            
+            <option>CORN</option>
+           
+            
+            <option>STRAWBERRY</option>
+            <option>MANGO</option>
+            
+            
+           
+            <option>RICE</option>
+            
+           
+            
+            <option>SUGARCANE</option>
+        </select>
+        <button type="submit">🔍 Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            🌾 Prediction: <strong>{{ prediction }}</strong>
+        </div>
+    {% endif %}
+</body>
+</html>
